@@ -13,6 +13,13 @@
  *
  * All state read from the Application + AppProject CRDs through Headlamp's
  * existing authenticated Kubernetes client. No Argo CD REST API calls.
+ *
+ * Note on tab ordering:
+ * The plugin SDK does not currently expose an `order`/`position` field on
+ * registerProjectDetailsTab, so custom tabs always render after the default
+ * tabs (Overview, Resources, Access, Map). Moving the GitOps tab to second
+ * position requires a small upstream change to Headlamp's plugin SDK and is
+ * tracked as future work in the proposal's Week 1 design-lock items.
  */
 
 import {
@@ -44,3 +51,11 @@ registerKubeObjectGlance({
   id: 'argocd.mapGlance',
   component: ({ node }) => <ArgoCDMapGlance node={node} />,
 });
+
+// A registerMapSource implementation (in `sources/argoCdMapSource.tsx`) is
+// scaffolded but intentionally not registered: rendering custom CRD nodes
+// inside Headlamp's GroupNode requires upstream changes (the namespace
+// grouper drops plain GraphNodes; wrapping with KubeObject crashes the
+// renderer on unknown kinds). The Map glance above already surfaces the
+// Argo CD app name on every managed workload, which covers the issue
+// #5260 "cross-resource navigation" requirement.
