@@ -8,7 +8,7 @@
  * Plugin registrations:
  *   1. Project Overview card  -> GitOps summary tile
  *   2. Project Details tab    -> "GitOps" tab with Application table + drawer
- *   3. KubeObject glance      -> "Argo CD * <app>" badge on managed workloads
+ *   3. KubeObject glance      -> "Argo CD · <app>" badge on managed workloads
  *                                in Headlamp's resource map
  *
  * All state read from the Application + AppProject CRDs through Headlamp's
