@@ -10,6 +10,44 @@ Headlamp Project. Read-only by design.
 
 ---
 
+## Screenshots
+
+### Home: Projects across multiple clusters
+
+Each row is a Headlamp Project. The `Degraded` health pill on `pointblank`
+is surfaced by aggregating its 10 Argo CD applications, one of which
+(`vestigo`) is Degraded.
+
+![Home: Projects across clusters](docs/images/projects-home.png)
+
+### Project overview: GitOps card
+
+The plugin's GitOps card sits alongside Status / Resources / Resource
+Quotas. It surfaces sync and health per Application, drift-sorted, with
+the cluster-wide rollup badge in the header.
+
+![Project overview with GitOps card](docs/images/project-overview.png)
+
+### GitOps tab on Project details
+
+All Argo CD applications matched to the Project, drift-first ordered
+(Degraded on top, then OutOfSync, then Healthy). Drift accent on the
+left edge of each row, source-type chips (Directory / Helm), auto-sync
+mode indicator, and per-row match-layer label.
+
+![GitOps tab](docs/images/gitops-tab.png)
+
+### Application detail drawer
+
+Click a row to reveal sources (with a deep link to the exact commit),
+managed resources pulled from `status.resources[]`, and the conditions
+timeline. The bottom strip shows source type, auto-sync mode,
+`ignoreDifferences` count, and AppProject membership.
+
+![Application detail drawer](docs/images/application-detail.png)
+
+---
+
 ## What the plugin adds
 
 | Surface | Where it appears | Plugin SDK hook |
